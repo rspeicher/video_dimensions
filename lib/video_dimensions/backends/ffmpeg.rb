@@ -1,7 +1,7 @@
 module VideoDimensions
   module Backends
-    class MediaInfo < Base
-      BINARY = 'mediainfo'.freeze
+    class FFmpeg < Base
+      BINARY = 'ffmpeg'.freeze
 
       def self.available?
         `which #{BINARY} >> /dev/null`
@@ -16,39 +16,38 @@ module VideoDimensions
       #
       # Examples
       #
-      #   >> MediaInfo.new('720p.wmv').dimensions
+      #   >> FFmpeg.new('720p.wmv').dimensions
       #   => [1280, 720]
       #
-      # Returns video dimensions as an array of width and height
-      #   in pixels.
+      # Returns video dimensions as an array of width and height in pixels.
       def dimensions
-        [width, height] if width && height
+        output.match(/Stream .+ Video: .+ \(\w+\).* (\d+)x(\d+).*/) do |m|
+          [m[1].to_i, m[2].to_i]
+        end
       end
 
       # Public: Video width
       #
       # Returns video width in pixels
       def width
-        output.match(/^Width\s+: ([\d\s]+) pixels$/) do |m|
-          m[1].gsub(' ', '').to_i
-        end
+        dimensions && dimensions[0]
       end
 
       # Public: Video height
       #
       # Returns video height in pixels
       def height
-        output.match(/^Height\s+: ([\d\s]+) pixels$/) do |m|
-          m[1].gsub(' ', '').to_i
-        end
+        dimensions && dimensions[1]
       end
 
       # Public: Video bitrate
       #
       # Returns video bitrate in kbps
       def bitrate
-        output.match(/^Bit rate\s+: ([\d\s]+) Kbps$/) do |m|
-          m[1].gsub(' ', '').to_i
+        # Video streams don't always surface their own bitrate, so we'll settle
+        # for the "total" bitrate
+        output.match(/^\s+Duration: .+bitrate: (\d+) kb\/s$/m) do |m|
+          m[1].to_i
         end
       end
 
@@ -56,12 +55,12 @@ module VideoDimensions
       #
       # Examples
       #
-      #   >> MediaInfo.new('720p.wmv').codec
-      #   => "WMV3"
+      #   >> FFmpeg.new('720p.wmv').codec
+      #   => "wmv3"
       #
       # Returns video codec ID
       def codec
-        output.match(/^Codec ID\s+: (.+)$/) do |m|
+        output.match(/Stream .+ Video: (.+) \(\w+\)/) do |m|
           m[1]
         end
       end
@@ -70,10 +69,10 @@ module VideoDimensions
 
       def output
         unless @output
-          @output = `#{BINARY} "#{@input}"`
+          @output = `#{BINARY} -i "#{@input}" 2>&1`.strip
 
           # Strip out the Audio codec section(s)
-          @output.gsub!(/(.*)^Audio( #\d+)?$.*/m, '\1')
+          @output.gsub!(/.*(Input #0.*)output file must be specified.*/m, '\1')
         end
 
         @output

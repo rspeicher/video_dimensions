@@ -34,6 +34,7 @@ One of the supported backends available in the system's `$PATH`.
 
 ### Supported Backends
 
+FFmpeg -- `ffmpeg`
 MediaInfo -- `mediainfo`
 
 ## Install

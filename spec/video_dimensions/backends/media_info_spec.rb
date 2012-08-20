@@ -15,13 +15,25 @@ module VideoDimensions::Backends
     end
 
     describe "attribute methods" do
-      subject { MediaInfo.new(fixture('720p.wmv')) }
+      context "720p sample" do
+        subject { MediaInfo.new(fixture('720p.wmv')) }
 
-      its(:dimensions) { should == [1280, 720] }
-      its(:width)      { should == 1280 }
-      its(:height)     { should == 720 }
-      its(:bitrate)    { should == 5904 }
-      its(:codec)      { should == "WMV3" }
+        its(:dimensions) { should == [1280, 720] }
+        its(:width)      { should == 1280 }
+        its(:height)     { should == 720 }
+        its(:bitrate)    { should == 5904 }
+        its(:codec)      { should == "WMV3" }
+      end
+
+      context "1080p sample" do
+        subject { MediaInfo.new(fixture('1080p.wmv')) }
+
+        its(:dimensions) { should == [1440, 1080] }
+        its(:width)      { should == 1440 }
+        its(:height)     { should == 1080 }
+        its(:bitrate)    { should == 9330 }
+        its(:codec)      { should == "WMV3" }
+      end
     end
   end
 end
