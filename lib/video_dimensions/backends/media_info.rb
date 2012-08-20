@@ -1,6 +1,6 @@
 module VideoDimensions
   module Backends
-    class MediaInfo
+    class MediaInfo < Base
       BINARY = 'mediainfo'.freeze
 
       def self.available?
