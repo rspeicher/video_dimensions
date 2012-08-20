@@ -40,6 +40,12 @@ MediaInfo -- `mediainfo`
 
     $ gem install video_dimensions
 
+## Version History
+
+**0.1.0** (2012-08-20)
+
+* Initial release.
+
 ## Copyright
 
 Copyright (c) 2012 Robert Speicher
