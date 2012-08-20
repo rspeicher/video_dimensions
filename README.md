@@ -1,7 +1,7 @@
 # video_dimensions
 
 Quick and easy video attributes -- width, height, bitrate, codec. Inspired by
-[Dimensions](https://github.com/sstephenson/dimensions) by Sam Stephenson.
+Sam Stephenson's [Dimensions](https://github.com/sstephenson/dimensions) gem.
 
 ## Features
 
@@ -34,8 +34,8 @@ One of the supported backends available in the system's `$PATH`.
 
 ### Supported Backends
 
-FFmpeg -- `ffmpeg`
-MediaInfo -- `mediainfo`
+* [FFmpeg](http://ffmpeg.org/) - `ffmpeg`
+* [MediaInfo](http://mediainfo.sourceforge.net/en) - `mediainfo`
 
 ## Install
 
