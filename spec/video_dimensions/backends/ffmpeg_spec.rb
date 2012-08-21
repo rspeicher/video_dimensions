@@ -106,6 +106,26 @@ module VideoDimensions::Backends
         its(:bitrate)    { should == 1109 }
         its(:codec)      { should == 'mpeg4' }
       end
+
+      context "XviD sample 2" do
+        subject { FFmpeg.new('') }
+
+        before do
+          subject.stubs(:output).returns <<-EOF
+            Metadata:
+              encoder         : VirtualDubMod 1.4.13
+            Duration: 00:51:33.55, start: 0.000000, bitrate: 949 kb/s
+              Stream #0:0: Video: mpeg4 (XVID / 0x44495658), yuv420p, 624x352 [SAR 1:1 DAR 39:22], 23.98 tbr, 23.98 tbn, 23.98 tbc
+              Stream #0:1: Audio: mp3 (U[0][0][0] / 0x0055), 48000 Hz, stereo, s16, 112 kb/s
+          EOF
+        end
+
+        its(:dimensions) { should == [624, 352] }
+        its(:width)      { should == 624 }
+        its(:height)     { should == 352 }
+        its(:bitrate)    { should == 949 }
+        its(:codec)      { should == 'mpeg4' }
+      end
     end
   end
 end
