@@ -43,6 +43,10 @@ One of the supported backends available in the system's `$PATH`.
 
 ## Version History
 
+**0.1.1** (2012-08-21)
+
+* Update FFmpeg backend patterns to match more video types
+
 **0.1.0** (2012-08-20)
 
 * Initial release.
