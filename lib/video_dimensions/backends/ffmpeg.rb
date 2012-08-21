@@ -23,7 +23,7 @@ module VideoDimensions
       #
       # Returns video dimensions as an array of width and height in pixels.
       def dimensions
-        output.match(/Stream .+ Video: .+ \(\w+\).* (\d+)x(\d+).*/) do |m|
+        output.match(/Stream .+ Video: .+ \([\w\s]+\).* (\d+)x(\d+).*/) do |m|
           [m[1].to_i, m[2].to_i]
         end
       end
@@ -62,7 +62,7 @@ module VideoDimensions
       #
       # Returns video codec ID
       def codec
-        output.match(/Stream .+ Video: (.+) \(\w+\)/) do |m|
+        output.match(/Stream .+ Video: (.+) \([\w\s]+\)/m) do |m|
           m[1]
         end
       end
