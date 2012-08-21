@@ -1,11 +1,13 @@
 module VideoDimensions
   module Backends
     class FFmpeg < Base
-      BINARY = 'ffmpeg'.freeze
-
       def self.available?
-        `which #{BINARY} >> /dev/null`
-        $? == 0
+        `which #{binary} 2>&1 >> /dev/null`
+        $?.exitstatus == 0
+      end
+
+      def self.binary
+        'ffmpeg'
       end
 
       def initialize(input)
@@ -69,7 +71,7 @@ module VideoDimensions
 
       def output
         unless @output
-          @output = `#{BINARY} -i "#{@input}" 2>&1`.strip
+          @output = `#{self.class.binary} -i "#{@input}" 2>&1`.strip
 
           # Strip out the Audio codec section(s)
           @output.gsub!(/.*(Input #0.*)output file must be specified.*/m, '\1')

@@ -1,11 +1,13 @@
 module VideoDimensions
   module Backends
     class MediaInfo < Base
-      BINARY = 'mediainfo'.freeze
-
       def self.available?
-        `which #{BINARY} >> /dev/null`
-        $? == 0
+        `which #{binary} 2>&1 >> /dev/null`
+        $?.exitstatus == 0
+      end
+
+      def self.binary
+        'mediainfo'
       end
 
       def initialize(input)
@@ -70,7 +72,7 @@ module VideoDimensions
 
       def output
         unless @output
-          @output = `#{BINARY} "#{@input}"`
+          @output = `#{self.class.binary} "#{@input}"`
 
           # Strip out the Audio codec section(s)
           @output.gsub!(/(.*)^Audio( #\d+)?$.*/m, '\1')

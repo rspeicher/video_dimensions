@@ -4,12 +4,12 @@ module VideoDimensions::Backends
   describe FFmpeg do
     describe ".available?" do
       it "returns true when utility is available" do
-        described_class.expects(:system).with("which #{described_class::BINARY}").returns(true)
+        described_class.stubs(:binary).returns('whoami')
         described_class.should be_available
       end
 
       it "returns false when utility is not available" do
-        described_class.expects(:system).with("which #{described_class::BINARY}").returns(false)
+        described_class.stubs(:binary).returns('invalidbinary')
         described_class.should_not be_available
       end
     end
