@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>video_dimensions by tsigo</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="javascripts/scale.fix.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>video_dimensions</h1>
+        <p>Quick and easy video attributes -- width, height, bitrate, codec.</p>
+        <p class="view"><a href="https://github.com/tsigo/video_dimensions">View the Project on GitHub <small>tsigo/video_dimensions</small></a></p>
+        <ul>
+          <li><a href="https://github.com/tsigo/video_dimensions/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/tsigo/video_dimensions/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/tsigo/video_dimensions">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>video_dimensions</h1>
+
+<p>Quick and easy video attributes -- width, height, bitrate, codec. Inspired by
+Sam Stephenson's <a href="https://github.com/sstephenson/dimensions">Dimensions</a> gem.</p>
+
+<h2>Features</h2>
+
+<p>Seamlessly supports multiple "backends" for sussing out video attributes, so it
+will try to find whatever utility the system has available (see
+<a href="#supported-backends">Supported Backends</a>) and use that.</p>
+
+<h2>Examples</h2>
+
+<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'video_dimensions'</span>
+
+<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">dimensions</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span> <span class="c1"># =&gt; [1280, 720]</span>
+<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">width</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>      <span class="c1"># =&gt; 1280</span>
+<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">height</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>     <span class="c1"># =&gt; 720</span>
+<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">bitrate</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>    <span class="c1"># =&gt; 5904</span>
+<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">codec</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>      <span class="c1"># =&gt; "WMV3"</span>
+
+<span class="n">v</span> <span class="o">=</span> <span class="no">VideoDimensions</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>
+<span class="n">v</span><span class="o">.</span><span class="n">dimensions</span> <span class="c1"># =&gt; [1280, 720]</span>
+<span class="n">v</span><span class="o">.</span><span class="n">width</span>      <span class="c1"># =&gt; 1280</span>
+<span class="n">v</span><span class="o">.</span><span class="n">height</span>     <span class="c1"># =&gt; 720</span>
+<span class="n">v</span><span class="o">.</span><span class="n">bitrate</span>    <span class="c1"># =&gt; 5904</span>
+<span class="n">v</span><span class="o">.</span><span class="n">codec</span>      <span class="c1"># =&gt; "WMV3"</span>
+</pre></div>
+
+<h2>Requirements</h2>
+
+<p>One of the supported backends available in the system's <code>$PATH</code>.</p>
+
+<h3>Supported Backends</h3>
+
+<ul>
+<li>
+<a href="http://ffmpeg.org/">FFmpeg</a> - <code>ffmpeg</code>
+</li>
+<li>
+<a href="http://mediainfo.sourceforge.net/en">MediaInfo</a> - <code>mediainfo</code>
+</li>
+</ul><h2>Install</h2>
+
+<pre><code>$ gem install video_dimensions
+</code></pre>
+
+<h2>Version History</h2>
+
+<p><strong>0.1.1</strong> (2012-08-21)</p>
+
+<ul>
+<li>Update FFmpeg backend patterns to match more video types</li>
+</ul><p><strong>0.1.0</strong> (2012-08-20)</p>
+
+<ul>
+<li>Initial release.</li>
+</ul><h2>Copyright</h2>
+
+<p>Copyright (c) 2012 Robert Speicher</p>
+
+<p>See LICENSE.txt for details.</p>
+      </section>
+    </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/tsigo">tsigo</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
+  </body>
+</html>
