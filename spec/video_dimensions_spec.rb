@@ -14,6 +14,7 @@ describe VideoDimensions do
       it { should respond_to(:height) }
       it { should respond_to(:bitrate) }
       it { should respond_to(:codec) }
+      it { should respond_to(:duration) }
     end
   end
 end

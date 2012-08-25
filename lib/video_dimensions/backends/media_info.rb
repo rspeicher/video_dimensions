@@ -68,6 +68,19 @@ module VideoDimensions
         end
       end
 
+      # Public: Video duration
+      #
+      # Returns video duration as a string in hh:mm:ss format
+      def duration
+        # MediaInfo only incudes the two longest durations in the ouptut (e.g.,
+        # 1h 5m; 5m 10s; 10s 15ms)
+        output.match(/^Duration\s+:( \d+h)?( \d+mn)?( \d+s)?(?: \d+ms)?$/) do |m|
+          # Map all of the captures to Integers, removing the time notation and
+          # converting nils to 0, and use sprintf to make include leading zeros
+          sprintf("%02d:%02d:%02d", *m.captures.map(&:to_i))
+        end
+      end
+
       private
 
       def output

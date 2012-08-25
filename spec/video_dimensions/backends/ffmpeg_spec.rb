@@ -23,6 +23,7 @@ module VideoDimensions::Backends
         its(:height)     { should == 720 }
         its(:bitrate)    { should == 6503 }
         its(:codec)      { should == "wmv3" }
+        its(:duration)   { should == '00:00:02' }
       end
 
       context "1080p sample" do
@@ -33,6 +34,7 @@ module VideoDimensions::Backends
         its(:height)     { should == 1080 }
         its(:bitrate)    { should == 9929 }
         its(:codec)      { should == "wmv3" }
+        its(:duration)   { should == '00:00:02' }
       end
 
       context "Matroska sample" do
@@ -55,6 +57,7 @@ module VideoDimensions::Backends
         its(:height)     { should == 720 }
         its(:bitrate)    { should == 3578 }
         its(:codec)      { should == 'h264' }
+        its(:duration)   { should == '00:47:10' }
       end
 
       context "MP4 sample" do
@@ -85,6 +88,7 @@ module VideoDimensions::Backends
         its(:height)     { should == 404 }
         its(:bitrate)    { should == 1333 }
         its(:codec)      { should == 'h264' }
+        its(:duration)   { should == '00:21:08' }
       end
 
       context "XviD sample" do
@@ -105,6 +109,7 @@ module VideoDimensions::Backends
         its(:height)     { should == 352 }
         its(:bitrate)    { should == 1109 }
         its(:codec)      { should == 'mpeg4' }
+        its(:duration)   { should == '00:21:58' }
       end
 
       context "XviD sample 2" do
@@ -125,6 +130,7 @@ module VideoDimensions::Backends
         its(:height)     { should == 352 }
         its(:bitrate)    { should == 949 }
         its(:codec)      { should == 'mpeg4' }
+        its(:duration)   { should == '00:51:33' }
       end
     end
   end

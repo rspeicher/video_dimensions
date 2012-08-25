@@ -67,6 +67,15 @@ module VideoDimensions
         end
       end
 
+      # Public: Video duration
+      #
+      # Returns video duration as a string in hh:mm:ss format
+      def duration
+        output.match(/Duration: ([\d\:]+)/) do |m|
+          m[1]
+        end
+      end
+
       private
 
       def output
