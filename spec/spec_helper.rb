@@ -1,11 +1,7 @@
 require 'rspec'
 require 'video_dimensions'
 
-module Fixtures
-  def fixture(path)
-    File.expand_path(File.join('fixtures', path), File.dirname(__FILE__))
-  end
-end
+Dir[File.expand_path("./spec/support/*.rb")].each { |f| require(f) }
 
 RSpec.configure do |c|
   c.mock_with :mocha
