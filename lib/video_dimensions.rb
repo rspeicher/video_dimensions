@@ -33,26 +33,81 @@ module VideoDimensions
   #   VideoDimensions.codec('~/Movies/720p.wmv')      # => "WMV3"
   #   VideoDimensions.duration('~/Movies/720p.wmv')   # => "00:00:02"
   class << self
+
+    # Public: Video dimensions
+    #
+    # input - Path to video file
+    #
+    # Examples
+    #
+    #   VideoDimensions('720p.wmv').dimensions # => [1280, 720]
+    #
+    # Returns video dimensions as an array of width and height in pixels.
     def dimensions(input)
       process(:dimensions, input)
     end
 
+    # Public: Video width
+    #
+    # input - Path to video file
+    #
+    # Examples
+    #
+    #   VideoDimensions('720p.wmv').width # => 1280
+    #
+    # Returns video width in pixels
     def width(input)
       process(:width, input)
     end
 
+    # Public: Video height
+    #
+    # input - Path to video file
+    #
+    # Examples
+    #
+    #   VideoDimensions('720p.wmv').height # => 720
+    #
+    # Returns video height in pixels
     def height(input)
       process(:height, input)
     end
 
+    # Public: Video bitrate
+    #
+    # input - Path to video file
+    #
+    # Examples
+    #
+    #   VideoDimensions('720p.wmv').bitrate # => 5904
+    #
+    # Returns video bitrate in kbps
     def bitrate(input)
       process(:bitrate, input)
     end
 
+    # Public: Video codec
+    #
+    # input - Path to video file
+    #
+    # Examples
+    #
+    #   VideoDimensions('720p.wmv').codec # => "wmv3"
+    #
+    # Returns video codec ID
     def codec(input)
       process(:codec, input)
     end
 
+    # Public: Video duration
+    #
+    # input - Path to video file
+    #
+    # Examples
+    #
+    #   VideoDimensions('720p.wmv').duration # => "00:00:02"
+    #
+    # Returns video duration as a string in hh:mm:ss format
     def duration(input)
       process(:duration, input)
     end
@@ -62,6 +117,7 @@ module VideoDimensions
     def process(msg, input)
       Backends.first_available.new(input).send(msg)
     end
+
   end
 
 end
