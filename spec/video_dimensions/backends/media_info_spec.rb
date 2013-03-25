@@ -24,6 +24,7 @@ module VideoDimensions::Backends
         its(:bitrate)    { should == 5904 }
         its(:codec)      { should == "WMV3" }
         its(:duration)   { should == '00:00:02' }
+        # its(:framerate)  { should == 21.83 } # NOTE: MediaInfo mistakenly reports 1,000 fps?
       end
 
       context "1080p sample" do
@@ -35,6 +36,38 @@ module VideoDimensions::Backends
         its(:bitrate)    { should == 9330 }
         its(:codec)      { should == "WMV3" }
         its(:duration)   { should == '00:00:02' }
+        # its(:framerate)  { should == 21.83 } # NOTE: MediaInfo mistakenly reports 1,000 fps?
+      end
+
+      context "60 fps sample" do
+        subject { MediaInfo.new('') }
+
+        before do
+          subject.stubs(:output).returns(
+            """
+            Video
+            ID                                       : 1
+            Format                                   : AVC
+            Format/Info                              : Advanced Video Codec
+            Format profile                           : High@L3.2
+            Format settings, CABAC                   : No
+            Format settings, ReFrames                : 4 frames
+            Codec ID                                 : V_MPEG4/ISO/AVC
+            Duration                                 : 10mn 14s
+            Width                                    : 1 280 pixels
+            Height                                   : 720 pixels
+            Display aspect ratio                     : 16:9
+            Frame rate mode                          : Constant
+            Frame rate                               : 60.000 fps
+            Color space                              : YUV
+            Chroma subsampling                       : 4:2:0
+            Bit depth                                : 8 bits
+            Scan type                                : Progressive
+            Writing library                          : x264 core 104 r1703 cd21d05
+            """.unindent)
+        end
+
+        its(:framerate) { should == 60.00 }
       end
 
       context "duration of at least 1 hour" do

@@ -6,7 +6,7 @@ Gem::Specification.new do |gem|
   gem.name          = "video_dimensions"
   gem.version       = VideoDimensions::VERSION
   gem.summary       = %q{Quick and easy video attributes}
-  gem.description   = %q{Quick and easy video attributes -- width, height, bitrate, codec, duration.}
+  gem.description   = %q{Quick and easy video attributes -- width, height, bitrate, codec, duration, framerate.}
   gem.license       = "MIT"
   gem.authors       = ["Robert Speicher"]
   gem.email         = "rspeicher@gmail.com"

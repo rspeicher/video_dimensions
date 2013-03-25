@@ -14,6 +14,7 @@ require 'video_dimensions/backends'
 #   v.bitrate    # => 5904
 #   v.codec      # => "WMV3"
 #   v.duration   # => "00:00:02"
+#   v.framerate  # => 21.83
 #
 # Returns a VideoDimensions::Backends object
 def VideoDimensions(input)
@@ -32,6 +33,7 @@ module VideoDimensions
   #   VideoDimensions.bitrate('~/Movies/720p.wmv')    # => 5904
   #   VideoDimensions.codec('~/Movies/720p.wmv')      # => "WMV3"
   #   VideoDimensions.duration('~/Movies/720p.wmv')   # => "00:00:02"
+  #   VideoDimensions.framerate('~/Movies/720p.wmv')  # => 21.83
   class << self
 
     # Public: Video dimensions
@@ -110,6 +112,19 @@ module VideoDimensions
     # Returns video duration as a string in hh:mm:ss format
     def duration(input)
       process(:duration, input)
+    end
+
+    # Public: Video framerate
+    #
+    # input - Path to video file
+    #
+    # Examples
+    #
+    #   VideoDimensions('720p.wmv').framerate # => 21.83
+    #
+    # Returns video framerate in frames per second as a float
+    def framerate(input)
+      process(:framerate, input)
     end
 
     private

@@ -24,6 +24,7 @@ module VideoDimensions::Backends
         its(:bitrate)    { should == 6503 }
         its(:codec)      { should == "wmv3" }
         its(:duration)   { should == '00:00:02' }
+        its(:framerate)  { should == 21.83 }
       end
 
       context "1080p sample" do
@@ -35,6 +36,7 @@ module VideoDimensions::Backends
         its(:bitrate)    { should == 9929 }
         its(:codec)      { should == "wmv3" }
         its(:duration)   { should == '00:00:02' }
+        its(:framerate)  { should == 21.83 }
       end
 
       context "Matroska sample" do
@@ -58,6 +60,7 @@ module VideoDimensions::Backends
         its(:bitrate)    { should == 3578 }
         its(:codec)      { should == 'h264' }
         its(:duration)   { should == '00:47:10' }
+        its(:framerate)  { should == 23.98 }
       end
 
       context "MP4 sample" do
@@ -89,6 +92,7 @@ module VideoDimensions::Backends
         its(:bitrate)    { should == 1333 }
         its(:codec)      { should == 'h264' }
         its(:duration)   { should == '00:21:08' }
+        its(:framerate)  { should == 23.98 }
       end
 
       context "XviD sample" do
@@ -110,6 +114,7 @@ module VideoDimensions::Backends
         its(:bitrate)    { should == 1109 }
         its(:codec)      { should == 'mpeg4' }
         its(:duration)   { should == '00:21:58' }
+        its(:framerate)  { should == 23.98 }
       end
 
       context "XviD sample 2" do
@@ -131,6 +136,30 @@ module VideoDimensions::Backends
         its(:bitrate)    { should == 949 }
         its(:codec)      { should == 'mpeg4' }
         its(:duration)   { should == '00:51:33' }
+        its(:framerate)  { should == 23.98 }
+      end
+
+      context "60 fps sample" do
+        subject { FFmpeg.new('') }
+
+        before do
+          subject.stubs(:output).returns <<-EOF
+            Metadata:
+              creation_time   : 2010-09-02 07:01:52
+            Duration: 00:10:14.61, start: 0.000000, bitrate: 9728 kb/s
+              Stream #0:0(eng): Video: h264 (High), yuv420p, 1280x720 [SAR 1:1 DAR 16:9], 60 fps, 60 tbr, 1k tbn, 120 tbc (default)
+              Stream #0:1(eng): Audio: aac, 48000 Hz, stereo, s16 (default)
+          EOF
+        end
+
+
+        its(:dimensions) { should == [1280, 720] }
+        its(:width)      { should == 1280 }
+        its(:height)     { should == 720 }
+        its(:bitrate)    { should == 9728 }
+        its(:codec)      { should == 'h264' }
+        its(:duration)   { should == '00:10:14' }
+        its(:framerate)  { should == 60.00 }
       end
     end
   end

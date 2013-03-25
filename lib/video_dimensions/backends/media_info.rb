@@ -52,6 +52,12 @@ module VideoDimensions
         end
       end
 
+      def framerate
+        output.match(/^Frame rate\s+: ([\d\.]+) fps$/) do |m|
+          m[1].to_f
+        end
+      end
+
       private
 
       def output
