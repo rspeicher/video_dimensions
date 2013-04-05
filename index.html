@@ -18,7 +18,7 @@
     <div class="wrapper">
       <header>
         <h1>video_dimensions</h1>
-        <p>Quick and easy video attributes -- width, height, bitrate, codec.</p>
+        <p>Quick and easy video attributes -- width, height, bitrate, codec, duration, framerate.</p>
         <p class="view"><a href="https://github.com/tsigo/video_dimensions">View the Project on GitHub <small>tsigo/video_dimensions</small></a></p>
         <ul>
           <li><a href="https://github.com/tsigo/video_dimensions/zipball/master">Download <strong>ZIP File</strong></a></li>
@@ -29,8 +29,8 @@
       <section>
         <h1>video_dimensions</h1>
 
-<p>Quick and easy video attributes -- width, height, bitrate, codec. Inspired by
-Sam Stephenson's <a href="https://github.com/sstephenson/dimensions">Dimensions</a> gem.</p>
+<p>Quick and easy video attributes -- width, height, bitrate, codec, duration, framerate.
+Inspired by Sam Stephenson's <a href="https://github.com/sstephenson/dimensions">Dimensions</a> gem.</p>
 
 <h2>Features</h2>
 
@@ -47,6 +47,8 @@ will try to find whatever utility the system has available (see
 <span class="no">VideoDimensions</span><span class="o">.</span><span class="n">height</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>     <span class="c1"># =&gt; 720</span>
 <span class="no">VideoDimensions</span><span class="o">.</span><span class="n">bitrate</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>    <span class="c1"># =&gt; 5904</span>
 <span class="no">VideoDimensions</span><span class="o">.</span><span class="n">codec</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>      <span class="c1"># =&gt; "WMV3"</span>
+<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">duration</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>   <span class="c1"># =&gt; "00:00:02"</span>
+<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">framerate</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>  <span class="c1"># =&gt; 21.83</span>
 
 <span class="n">v</span> <span class="o">=</span> <span class="no">VideoDimensions</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>
 <span class="n">v</span><span class="o">.</span><span class="n">dimensions</span> <span class="c1"># =&gt; [1280, 720]</span>
@@ -54,6 +56,8 @@ will try to find whatever utility the system has available (see
 <span class="n">v</span><span class="o">.</span><span class="n">height</span>     <span class="c1"># =&gt; 720</span>
 <span class="n">v</span><span class="o">.</span><span class="n">bitrate</span>    <span class="c1"># =&gt; 5904</span>
 <span class="n">v</span><span class="o">.</span><span class="n">codec</span>      <span class="c1"># =&gt; "WMV3"</span>
+<span class="n">v</span><span class="o">.</span><span class="n">duration</span>   <span class="c1"># =&gt; "00:00:02"</span>
+<span class="n">v</span><span class="o">.</span><span class="n">framerate</span>  <span class="c1"># =&gt; 21.83</span>
 </pre></div>
 
 <h2>Requirements</h2>
@@ -76,7 +80,15 @@ will try to find whatever utility the system has available (see
 
 <h2>Version History</h2>
 
-<p><strong>0.1.1</strong> (2012-08-21)</p>
+<p><strong>0.3.0</strong> (2013-03-25)</p>
+
+<ul>
+<li>Add <code>framerate</code> attribute</li>
+</ul><p><strong>0.2.0</strong> (2012-08-25)</p>
+
+<ul>
+<li>Add <code>duration</code> attribute</li>
+</ul><p><strong>0.1.1</strong> (2012-08-21)</p>
 
 <ul>
 <li>Update FFmpeg backend patterns to match more video types</li>
