@@ -5,12 +5,12 @@ module VideoDimensions::Backends
     describe ".available?" do
       it "returns true when utility is available" do
         described_class.stubs(:binary).returns('whoami')
-        described_class.should be_available
+        expect(described_class).to be_available
       end
 
       it "returns false when utility is not available" do
         described_class.stubs(:binary).returns('invalidbinary')
-        described_class.should_not be_available
+        expect(described_class).not_to be_available
       end
     end
 

@@ -6,11 +6,11 @@ module VideoDimensions
       it "returns the first available backend" do
         Backends::MediaInfo.stubs(:available?).returns(true)
         Backends::FFmpeg.stubs(:available?).returns(false)
-        Backends.first_available.should == Backends::MediaInfo
+        expect(Backends.first_available).to eq Backends::MediaInfo
 
         Backends::MediaInfo.stubs(:available?).returns(false)
         Backends::FFmpeg.stubs(:available?).returns(true)
-        Backends.first_available.should == Backends::FFmpeg
+        expect(Backends.first_available).to eq Backends::FFmpeg
       end
 
       it "raises exception when none are available" do
