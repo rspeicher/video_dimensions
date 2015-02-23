@@ -47,6 +47,10 @@ One of the supported backends available in the system's `$PATH`.
 
 ## Version History
 
+**0.3.1** (2015-02-23)
+
+* Fix edge case in FFmpeg backend
+
 **0.3.0** (2013-03-25)
 
 * Add `framerate` attribute
@@ -65,6 +69,6 @@ One of the supported backends available in the system's `$PATH`.
 
 ## Copyright
 
-Copyright (c) 2012 Robert Speicher
+Copyright (c) 2012-2015 Robert Speicher
 
 See LICENSE.txt for details.
