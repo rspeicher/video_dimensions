@@ -56,12 +56,18 @@ module VideoDimensions
 
       private
 
+      def ffmpeg_output
+        `#{self.class.binary} -i "#{@input}" 2>&1`.strip
+      end
+
       def output
         unless @output
-          @output = `#{self.class.binary} -i "#{@input}" 2>&1`.strip
-
-          # Strip out the Audio codec section(s)
-          @output.gsub!(/.*(Input #0.*)output file must be specified.*/m, '\1')
+          # Get raw output, then:
+          # - Guard against invalid UTF-8 byte sequences
+          # - Strip out the Audio codec section(s)
+          @output = ffmpeg_output
+            .encode('UTF-8', 'binary', invalid: :replace, undef: :replace, replace: '')
+            .gsub(/.*(Input #0.*)output file must be specified.*/m, '\1')
         end
 
         @output
