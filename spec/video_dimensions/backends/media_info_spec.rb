@@ -91,7 +91,7 @@ module VideoDimensions::Backends
             """.unindent)
         end
 
-        its(:duration)   { should == '01:32:00' }
+        its(:duration) { should == '01:32:00' }
       end
 
       context "duration of at least 1 minute" do
@@ -114,7 +114,7 @@ module VideoDimensions::Backends
             """.unindent)
         end
 
-        its(:duration)   { should == '00:04:10' }
+        its(:duration) { should == '00:04:10' }
       end
     end
   end

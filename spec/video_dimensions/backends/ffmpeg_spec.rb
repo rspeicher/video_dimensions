@@ -55,8 +55,6 @@ module VideoDimensions::Backends
         end
 
         its(:dimensions) { should == [1280, 720] }
-        its(:width)      { should == 1280 }
-        its(:height)     { should == 720 }
         its(:bitrate)    { should == 3578 }
         its(:codec)      { should == 'h264' }
         its(:duration)   { should == '00:47:10' }
@@ -87,8 +85,6 @@ module VideoDimensions::Backends
         end
 
         its(:dimensions) { should == [720, 404] }
-        its(:width)      { should == 720 }
-        its(:height)     { should == 404 }
         its(:bitrate)    { should == 1333 }
         its(:codec)      { should == 'h264' }
         its(:duration)   { should == '00:21:08' }
@@ -109,8 +105,6 @@ module VideoDimensions::Backends
         end
 
         its(:dimensions) { should == [624, 352] }
-        its(:width)      { should == 624 }
-        its(:height)     { should == 352 }
         its(:bitrate)    { should == 1109 }
         its(:codec)      { should == 'mpeg4' }
         its(:duration)   { should == '00:21:58' }
@@ -131,8 +125,6 @@ module VideoDimensions::Backends
         end
 
         its(:dimensions) { should == [624, 352] }
-        its(:width)      { should == 624 }
-        its(:height)     { should == 352 }
         its(:bitrate)    { should == 949 }
         its(:codec)      { should == 'mpeg4' }
         its(:duration)   { should == '00:51:33' }
@@ -152,10 +144,7 @@ module VideoDimensions::Backends
           EOF
         end
 
-
         its(:dimensions) { should == [1280, 720] }
-        its(:width)      { should == 1280 }
-        its(:height)     { should == 720 }
         its(:bitrate)    { should == 9728 }
         its(:codec)      { should == 'h264' }
         its(:duration)   { should == '00:10:14' }
