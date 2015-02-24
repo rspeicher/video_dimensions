@@ -27,44 +27,48 @@
         </ul>
       </header>
       <section>
-        <h1>video_dimensions</h1>
+        <h1>
+<a id="video_dimensions" class="anchor" href="#video_dimensions" aria-hidden="true"><span class="octicon octicon-link"></span></a>video_dimensions</h1>
 
 <p>Quick and easy video attributes -- width, height, bitrate, codec, duration, framerate.
 Inspired by Sam Stephenson's <a href="https://github.com/sstephenson/dimensions">Dimensions</a> gem.</p>
 
-<h2>Features</h2>
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
 
 <p>Seamlessly supports multiple "backends" for sussing out video attributes, so it
 will try to find whatever utility the system has available (see
 <a href="#supported-backends">Supported Backends</a>) and use that.</p>
 
-<h2>Examples</h2>
+<h2>
+<a id="examples" class="anchor" href="#examples" aria-hidden="true"><span class="octicon octicon-link"></span></a>Examples</h2>
 
-<div class="highlight"><pre><span class="nb">require</span> <span class="s1">'video_dimensions'</span>
+<div class="highlight highlight-ruby"><pre><span class="pl-k">require</span> <span class="pl-s1"><span class="pl-pds">'</span>video_dimensions<span class="pl-pds">'</span></span>
 
-<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">dimensions</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span> <span class="c1"># =&gt; [1280, 720]</span>
-<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">width</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>      <span class="c1"># =&gt; 1280</span>
-<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">height</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>     <span class="c1"># =&gt; 720</span>
-<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">bitrate</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>    <span class="c1"># =&gt; 5904</span>
-<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">codec</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>      <span class="c1"># =&gt; "WMV3"</span>
-<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">duration</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>   <span class="c1"># =&gt; "00:00:02"</span>
-<span class="no">VideoDimensions</span><span class="o">.</span><span class="n">framerate</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>  <span class="c1"># =&gt; 21.83</span>
+<span class="pl-s3">VideoDimensions</span>.dimensions(<span class="pl-s1"><span class="pl-pds">'</span>~/Movies/720p.wmv<span class="pl-pds">'</span></span>) <span class="pl-c"># =&gt; [1280, 720]</span>
+<span class="pl-s3">VideoDimensions</span>.width(<span class="pl-s1"><span class="pl-pds">'</span>~/Movies/720p.wmv<span class="pl-pds">'</span></span>)      <span class="pl-c"># =&gt; 1280</span>
+<span class="pl-s3">VideoDimensions</span>.height(<span class="pl-s1"><span class="pl-pds">'</span>~/Movies/720p.wmv<span class="pl-pds">'</span></span>)     <span class="pl-c"># =&gt; 720</span>
+<span class="pl-s3">VideoDimensions</span>.bitrate(<span class="pl-s1"><span class="pl-pds">'</span>~/Movies/720p.wmv<span class="pl-pds">'</span></span>)    <span class="pl-c"># =&gt; 5904</span>
+<span class="pl-s3">VideoDimensions</span>.codec(<span class="pl-s1"><span class="pl-pds">'</span>~/Movies/720p.wmv<span class="pl-pds">'</span></span>)      <span class="pl-c"># =&gt; "WMV3"</span>
+<span class="pl-s3">VideoDimensions</span>.duration(<span class="pl-s1"><span class="pl-pds">'</span>~/Movies/720p.wmv<span class="pl-pds">'</span></span>)   <span class="pl-c"># =&gt; "00:00:02"</span>
+<span class="pl-s3">VideoDimensions</span>.framerate(<span class="pl-s1"><span class="pl-pds">'</span>~/Movies/720p.wmv<span class="pl-pds">'</span></span>)  <span class="pl-c"># =&gt; 21.83</span>
 
-<span class="n">v</span> <span class="o">=</span> <span class="no">VideoDimensions</span><span class="p">(</span><span class="s1">'~/Movies/720p.wmv'</span><span class="p">)</span>
-<span class="n">v</span><span class="o">.</span><span class="n">dimensions</span> <span class="c1"># =&gt; [1280, 720]</span>
-<span class="n">v</span><span class="o">.</span><span class="n">width</span>      <span class="c1"># =&gt; 1280</span>
-<span class="n">v</span><span class="o">.</span><span class="n">height</span>     <span class="c1"># =&gt; 720</span>
-<span class="n">v</span><span class="o">.</span><span class="n">bitrate</span>    <span class="c1"># =&gt; 5904</span>
-<span class="n">v</span><span class="o">.</span><span class="n">codec</span>      <span class="c1"># =&gt; "WMV3"</span>
-<span class="n">v</span><span class="o">.</span><span class="n">duration</span>   <span class="c1"># =&gt; "00:00:02"</span>
-<span class="n">v</span><span class="o">.</span><span class="n">framerate</span>  <span class="c1"># =&gt; 21.83</span>
-</pre></div>
+v <span class="pl-k">=</span> <span class="pl-vo">VideoDimensions</span>(<span class="pl-s1"><span class="pl-pds">'</span>~/Movies/720p.wmv<span class="pl-pds">'</span></span>)
+v.dimensions <span class="pl-c"># =&gt; [1280, 720]</span>
+v.width      <span class="pl-c"># =&gt; 1280</span>
+v.height     <span class="pl-c"># =&gt; 720</span>
+v.bitrate    <span class="pl-c"># =&gt; 5904</span>
+v.codec      <span class="pl-c"># =&gt; "WMV3"</span>
+v.duration   <span class="pl-c"># =&gt; "00:00:02"</span>
+v.framerate  <span class="pl-c"># =&gt; 21.83</span></pre></div>
 
-<h2>Requirements</h2>
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
 
 <p>One of the supported backends available in the system's <code>$PATH</code>.</p>
 
-<h3>Supported Backends</h3>
+<h3>
+<a id="supported-backends" class="anchor" href="#supported-backends" aria-hidden="true"><span class="octicon octicon-link"></span></a>Supported Backends</h3>
 
 <ul>
 <li>
@@ -73,32 +77,51 @@ will try to find whatever utility the system has available (see
 <li>
 <a href="http://mediainfo.sourceforge.net/en">MediaInfo</a> - <code>mediainfo</code>
 </li>
-</ul><h2>Install</h2>
+</ul>
+
+<h2>
+<a id="install" class="anchor" href="#install" aria-hidden="true"><span class="octicon octicon-link"></span></a>Install</h2>
 
 <pre><code>$ gem install video_dimensions
 </code></pre>
 
-<h2>Version History</h2>
+<h2>
+<a id="version-history" class="anchor" href="#version-history" aria-hidden="true"><span class="octicon octicon-link"></span></a>Version History</h2>
+
+<p><strong>0.3.1</strong> (2015-02-23)</p>
+
+<ul>
+<li>Fix edge case in FFmpeg backend</li>
+</ul>
 
 <p><strong>0.3.0</strong> (2013-03-25)</p>
 
 <ul>
 <li>Add <code>framerate</code> attribute</li>
-</ul><p><strong>0.2.0</strong> (2012-08-25)</p>
+</ul>
+
+<p><strong>0.2.0</strong> (2012-08-25)</p>
 
 <ul>
 <li>Add <code>duration</code> attribute</li>
-</ul><p><strong>0.1.1</strong> (2012-08-21)</p>
+</ul>
+
+<p><strong>0.1.1</strong> (2012-08-21)</p>
 
 <ul>
 <li>Update FFmpeg backend patterns to match more video types</li>
-</ul><p><strong>0.1.0</strong> (2012-08-20)</p>
+</ul>
+
+<p><strong>0.1.0</strong> (2012-08-20)</p>
 
 <ul>
 <li>Initial release.</li>
-</ul><h2>Copyright</h2>
+</ul>
 
-<p>Copyright (c) 2012 Robert Speicher</p>
+<h2>
+<a id="copyright" class="anchor" href="#copyright" aria-hidden="true"><span class="octicon octicon-link"></span></a>Copyright</h2>
+
+<p>Copyright (c) 2012-2015 Robert Speicher</p>
 
 <p>See LICENSE.txt for details.</p>
       </section>
