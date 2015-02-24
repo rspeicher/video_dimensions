@@ -1,0 +1,5 @@
+Metadata:
+  creation_time   : 1970-01-01 00:00:00
+Duration: 00:47:10.78, start: 0.000000, bitrate: 3578 kb/s
+  Stream #0:0: Audio: ac3, 48000 Hz, 5.1(side), s16, 384 kb/s (default)
+  Stream #0:1(eng): Video: h264 (High), yuv420p, 1280x720, SAR 1:1 DAR 16:9, 23.98 fps, 23.98 tbr, 1k tbn, 47.95 tbc

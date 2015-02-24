@@ -1,0 +1,11 @@
+General
+Complete name                            : video.mp4
+Format                                   : MPEG-4
+Format profile                           : Base Media
+Codec ID                                 : isom
+File size                                : 11.3 MiB
+Duration                                 : 4mn 10s
+Overall bit rate mode                    : Variable
+Overall bit rate                         : 379 Kbps
+Encoded date                             : UTC 2012-01-05 07:04:29
+Tagged date                              : UTC 2012-01-05 07:04:29

@@ -1,0 +1,15 @@
+Metadata:
+  major_brand     : isom
+  minor_version   : 512
+  compatible_brands: isomiso2avc1mp41
+  creation_time   : 1970-01-01 00:00:00
+  encoder         : Lavf52.94.0
+Duration: 00:21:08.81, start: 0.000000, bitrate: 1333 kb/s
+  Stream #0:0(und): Video: h264 (High) (avc1 / 0x31637661), yuv420p, 720x404 [SAR 1:1 DAR 180:101], 1200 kb/s, 23.98 fps, 23.98 tbr, 24k tbn, 47.95 tbc
+  Metadata:
+    creation_time   : 1970-01-01 00:00:00
+    handler_name    : VideoHandler
+  Stream #0:1(und): Audio: aac (mp4a / 0x6134706D), 48000 Hz, stereo, s16, 127 kb/s
+  Metadata:
+    creation_time   : 1970-01-01 00:00:00
+    handler_name    : SoundHandler

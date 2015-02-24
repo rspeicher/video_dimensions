@@ -81,85 +81,19 @@ module VideoDimensions::Backends
         # end
       end
 
-      context '60 fps sample' do
-        let(:sample) { MediaInfo.new('') }
-
-        before do
-          sample.stubs(:output).returns(
-            """
-            Video
-            ID                                       : 1
-            Format                                   : AVC
-            Format/Info                              : Advanced Video Codec
-            Format profile                           : High@L3.2
-            Format settings, CABAC                   : No
-            Format settings, ReFrames                : 4 frames
-            Codec ID                                 : V_MPEG4/ISO/AVC
-            Duration                                 : 10mn 14s
-            Width                                    : 1 280 pixels
-            Height                                   : 720 pixels
-            Display aspect ratio                     : 16:9
-            Frame rate mode                          : Constant
-            Frame rate                               : 60.000 fps
-            Color space                              : YUV
-            Chroma subsampling                       : 4:2:0
-            Bit depth                                : 8 bits
-            Scan type                                : Progressive
-            Writing library                          : x264 core 104 r1703 cd21d05
-            """.unindent)
-        end
-
+      context '60 fps sample', output_fixture: 'mediainfo/sixty_fps' do
         it 'returns the correct framerate' do
           expect(sample.framerate).to eq 60.00
         end
       end
 
-      context 'duration of at least 1 hour' do
-        let(:sample) { MediaInfo.new('') }
-
-        before do
-          sample.stubs(:output).returns(
-            """
-            General
-            Complete name                            : video.mp4
-            Format                                   : MPEG-4
-            Format profile                           : Base Media / Version 2
-            Codec ID                                 : mp42
-            File size                                : 984 MiB
-            Duration                                 : 1h 32mn
-            Overall bit rate mode                    : Variable
-            Overall bit rate                         : 1 492 Kbps
-            Encoded date                             : UTC 2012-07-08 03:49:06
-            Tagged date                              : UTC 2012-07-08 04:11:57
-            Writing application                      : HandBrake 0.9.6 2012022800
-            """.unindent)
-        end
-
+      context 'duration of at least 1 hour', output_fixture: 'mediainfo/one_hour'  do
         it 'returns the correct duration' do
           expect(sample.duration).to eq '01:32:00'
         end
       end
 
-      context 'duration of at least 1 minute' do
-        let(:sample) { MediaInfo.new('') }
-
-        before do
-          sample.stubs(:output).returns(
-            """
-            General
-            Complete name                            : video.mp4
-            Format                                   : MPEG-4
-            Format profile                           : Base Media
-            Codec ID                                 : isom
-            File size                                : 11.3 MiB
-            Duration                                 : 4mn 10s
-            Overall bit rate mode                    : Variable
-            Overall bit rate                         : 379 Kbps
-            Encoded date                             : UTC 2012-01-05 07:04:29
-            Tagged date                              : UTC 2012-01-05 07:04:29
-            """.unindent)
-        end
-
+      context 'duration of at least 1 minute', output_fixture: 'mediainfo/one_minute' do
         it 'returns the correct duration' do
           expect(sample.duration).to eq '00:04:10'
         end

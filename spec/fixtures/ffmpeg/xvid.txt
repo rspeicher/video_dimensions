@@ -1,0 +1,5 @@
+Metadata:
+  encoder         : VirtualDubMod 1.5.10.2 (build 2540/release)
+Duration: 00:21:58.56, start: 0.000000, bitrate: 1109 kb/s
+  Stream #0:0: Video: mpeg4 (Advanced Simple Profile) (XVID / 0x44495658), yuv420p, 624x352 [SAR 1:1 DAR 39:22], 23.98 tbr, 23.98 tbn, 23.98 tbc
+  Stream #0:1: Audio: mp3 (U[0][0][0] / 0x0055), 48000 Hz, stereo, s16, 32 kb/s

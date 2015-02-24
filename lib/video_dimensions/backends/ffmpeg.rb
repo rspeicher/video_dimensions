@@ -31,7 +31,7 @@ module VideoDimensions
       def bitrate
         # Video streams don't always surface their own bitrate, so we'll settle
         # for the "total" bitrate
-        output.match(/^\s+Duration: .+bitrate: (\d+) kb\/s$/m) do |m|
+        output.match(/^\s*Duration: .+bitrate: (\d+) kb\/s/m) do |m|
           m[1].to_i
         end
       end

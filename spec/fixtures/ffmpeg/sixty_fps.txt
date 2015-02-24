@@ -1,0 +1,5 @@
+Metadata:
+  creation_time   : 2010-09-02 07:01:52
+Duration: 00:10:14.61, start: 0.000000, bitrate: 9728 kb/s
+  Stream #0:0(eng): Video: h264 (High), yuv420p, 1280x720 [SAR 1:1 DAR 16:9], 60 fps, 60 tbr, 1k tbn, 120 tbc (default)
+  Stream #0:1(eng): Audio: aac, 48000 Hz, stereo, s16 (default)

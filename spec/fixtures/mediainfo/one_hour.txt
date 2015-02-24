@@ -1,0 +1,12 @@
+General
+Complete name                            : video.mp4
+Format                                   : MPEG-4
+Format profile                           : Base Media / Version 2
+Codec ID                                 : mp42
+File size                                : 984 MiB
+Duration                                 : 1h 32mn
+Overall bit rate mode                    : Variable
+Overall bit rate                         : 1 492 Kbps
+Encoded date                             : UTC 2012-07-08 03:49:06
+Tagged date                              : UTC 2012-07-08 04:11:57
+Writing application                      : HandBrake 0.9.6 2012022800
