@@ -2,50 +2,90 @@ require 'spec_helper'
 
 module VideoDimensions::Backends
   describe FFmpeg do
-    describe ".available?" do
-      it "returns true when utility is available" do
+    describe '.available?' do
+      it 'returns true when utility is available' do
         described_class.stubs(:binary).returns('whoami')
         expect(described_class).to be_available
       end
 
-      it "returns false when utility is not available" do
+      it 'returns false when utility is not available' do
         described_class.stubs(:binary).returns('invalidbinary')
         expect(described_class).not_to be_available
       end
     end
 
-    describe "attribute methods" do
-      context "720p sample" do
-        subject { FFmpeg.new(fixture('720p.wmv')) }
+    describe 'attribute methods' do
+      context '720p sample' do
+        let(:sample) { FFmpeg.new(fixture('720p.wmv')) }
 
-        its(:dimensions) { should == [1280, 720] }
-        its(:width)      { should == 1280 }
-        its(:height)     { should == 720 }
-        its(:bitrate)    { should == 6503 }
-        its(:codec)      { should == "wmv3" }
-        its(:duration)   { should == '00:00:02' }
-        its(:framerate)  { should == 21.83 }
+        it 'returns the correct dimensions' do
+          expect(sample.dimensions).to eq [1280, 720]
+        end
+
+        it 'returns the correct width' do
+          expect(sample.width).to eq 1280
+        end
+
+        it 'returns the correct height' do
+          expect(sample.height).to eq 720
+        end
+
+        it 'returns the correct bitrate' do
+          expect(sample.bitrate).to eq 6503
+        end
+
+        it 'returns the correct codec' do
+          expect(sample.codec).to eq 'wmv3'
+        end
+
+        it 'returns the correct duration' do
+          expect(sample.duration).to eq '00:00:02'
+        end
+
+        it 'returns the correct framerate' do
+          expect(sample.framerate).to eq 21.83
+        end
       end
 
-      context "1080p sample" do
-        subject { FFmpeg.new(fixture('1080p.wmv')) }
+      context '1080p sample' do
+        let(:sample) { FFmpeg.new(fixture('1080p.wmv')) }
 
-        its(:dimensions) { should == [1440, 1080] }
-        its(:width)      { should == 1440 }
-        its(:height)     { should == 1080 }
-        its(:bitrate)    { should == 9929 }
-        its(:codec)      { should == "wmv3" }
-        its(:duration)   { should == '00:00:02' }
-        its(:framerate)  { should == 21.83 }
+        it 'returns the correct dimensions' do
+          expect(sample.dimensions).to eq [1440, 1080]
+        end
+
+        it 'returns the correct width' do
+          expect(sample.width).to eq 1440
+        end
+
+        it 'returns the correct height' do
+          expect(sample.height).to eq 1080
+        end
+
+        it 'returns the correct bitrate' do
+          expect(sample.bitrate).to eq 9929
+        end
+
+        it 'returns the correct codec' do
+          expect(sample.codec).to eq 'wmv3'
+        end
+
+        it 'returns the correct duration' do
+          expect(sample.duration).to eq '00:00:02'
+        end
+
+        it 'returns the correct framerate' do
+          expect(sample.framerate).to eq 21.83
+        end
       end
 
-      context "Matroska sample" do
-        subject { FFmpeg.new('') }
+      context 'Matroska sample' do
+        let(:sample) { FFmpeg.new('') }
 
         before do
           # We don't want to store this particular file in Git as a fixture, so
           # just fake the output
-          subject.stubs(:output).returns <<-EOF
+          sample.stubs(:output).returns <<-EOF
               Metadata:
                 creation_time   : 1970-01-01 00:00:00
               Duration: 00:47:10.78, start: 0.000000, bitrate: 3578 kb/s
@@ -54,18 +94,32 @@ module VideoDimensions::Backends
           EOF
         end
 
-        its(:dimensions) { should == [1280, 720] }
-        its(:bitrate)    { should == 3578 }
-        its(:codec)      { should == 'h264' }
-        its(:duration)   { should == '00:47:10' }
-        its(:framerate)  { should == 23.98 }
+        it 'returns the correct dimensions' do
+          expect(sample.dimensions).to eq [1280, 720]
+        end
+
+        it 'returns the correct bitrate' do
+          expect(sample.bitrate).to eq 3578
+        end
+
+        it 'returns the correct codec' do
+          expect(sample.codec).to eq 'h264'
+        end
+
+        it 'returns the correct duration' do
+          expect(sample.duration).to eq '00:47:10'
+        end
+
+        it 'returns the correct framerate' do
+          expect(sample.framerate).to eq 23.98
+        end
       end
 
-      context "MP4 sample" do
-        subject { FFmpeg.new('') }
+      context 'MP4 sample' do
+        let(:sample) { FFmpeg.new('') }
 
         before do
-          subject.stubs(:output).returns <<-EOF
+          sample.stubs(:output).returns <<-EOF
             Metadata:
               major_brand     : isom
               minor_version   : 512
@@ -84,18 +138,32 @@ module VideoDimensions::Backends
           EOF
         end
 
-        its(:dimensions) { should == [720, 404] }
-        its(:bitrate)    { should == 1333 }
-        its(:codec)      { should == 'h264' }
-        its(:duration)   { should == '00:21:08' }
-        its(:framerate)  { should == 23.98 }
+        it 'returns the correct dimensions' do
+          expect(sample.dimensions).to eq [720, 404]
+        end
+
+        it 'returns the correct bitrate' do
+          expect(sample.bitrate).to eq 1333
+        end
+
+        it 'returns the correct codec' do
+          expect(sample.codec).to eq 'h264'
+        end
+
+        it 'returns the correct duration' do
+          expect(sample.duration).to eq '00:21:08'
+        end
+
+        it 'returns the correct framerate' do
+          expect(sample.framerate).to eq 23.98
+        end
       end
 
-      context "XviD sample" do
-        subject { FFmpeg.new('') }
+      context 'XviD sample' do
+        let(:sample) { FFmpeg.new('') }
 
         before do
-          subject.stubs(:output).returns <<-EOF
+          sample.stubs(:output).returns <<-EOF
             Metadata:
               encoder         : VirtualDubMod 1.5.10.2 (build 2540/release)
             Duration: 00:21:58.56, start: 0.000000, bitrate: 1109 kb/s
@@ -104,18 +172,32 @@ module VideoDimensions::Backends
           EOF
         end
 
-        its(:dimensions) { should == [624, 352] }
-        its(:bitrate)    { should == 1109 }
-        its(:codec)      { should == 'mpeg4' }
-        its(:duration)   { should == '00:21:58' }
-        its(:framerate)  { should == 23.98 }
+        it 'returns the correct dimensions' do
+          expect(sample.dimensions).to eq [624, 352]
+        end
+
+        it 'returns the correct bitrate' do
+          expect(sample.bitrate).to eq 1109
+        end
+
+        it 'returns the correct codec' do
+          expect(sample.codec).to eq 'mpeg4'
+        end
+
+        it 'returns the correct duration' do
+          expect(sample.duration).to eq '00:21:58'
+        end
+
+        it 'returns the correct framerate' do
+          expect(sample.framerate).to eq 23.98
+        end
       end
 
-      context "XviD sample 2" do
-        subject { FFmpeg.new('') }
+      context 'XviD sample 2' do
+        let(:sample) { FFmpeg.new('') }
 
         before do
-          subject.stubs(:output).returns <<-EOF
+          sample.stubs(:output).returns <<-EOF
             Metadata:
               encoder         : VirtualDubMod 1.4.13
             Duration: 00:51:33.55, start: 0.000000, bitrate: 949 kb/s
@@ -124,18 +206,32 @@ module VideoDimensions::Backends
           EOF
         end
 
-        its(:dimensions) { should == [624, 352] }
-        its(:bitrate)    { should == 949 }
-        its(:codec)      { should == 'mpeg4' }
-        its(:duration)   { should == '00:51:33' }
-        its(:framerate)  { should == 23.98 }
+        it 'returns the correct dimensions' do
+          expect(sample.dimensions).to eq [624, 352]
+        end
+
+        it 'returns the correct bitrate' do
+          expect(sample.bitrate).to eq 949
+        end
+
+        it 'returns the correct codec' do
+          expect(sample.codec).to eq 'mpeg4'
+        end
+
+        it 'returns the correct duration' do
+          expect(sample.duration).to eq '00:51:33'
+        end
+
+        it 'returns the correct framerate' do
+          expect(sample.framerate).to eq 23.98
+        end
       end
 
-      context "60 fps sample" do
-        subject { FFmpeg.new('') }
+      context '60 fps sample' do
+        let(:sample) { FFmpeg.new('') }
 
         before do
-          subject.stubs(:output).returns <<-EOF
+          sample.stubs(:output).returns <<-EOF
             Metadata:
               creation_time   : 2010-09-02 07:01:52
             Duration: 00:10:14.61, start: 0.000000, bitrate: 9728 kb/s
@@ -144,18 +240,32 @@ module VideoDimensions::Backends
           EOF
         end
 
-        its(:dimensions) { should == [1280, 720] }
-        its(:bitrate)    { should == 9728 }
-        its(:codec)      { should == 'h264' }
-        its(:duration)   { should == '00:10:14' }
-        its(:framerate)  { should == 60.00 }
+        it 'returns the correct dimensions' do
+          expect(sample.dimensions).to eq [1280, 720]
+        end
+
+        it 'returns the correct bitrate' do
+          expect(sample.bitrate).to eq 9728
+        end
+
+        it 'returns the correct codec' do
+          expect(sample.codec).to eq 'h264'
+        end
+
+        it 'returns the correct duration' do
+          expect(sample.duration).to eq '00:10:14'
+        end
+
+        it 'returns the correct framerate' do
+          expect(sample.framerate).to eq 60.00
+        end
       end
 
-      context "invalid UTF-8 byte sequence sample" do
-        subject { FFmpeg.new('') }
+      context 'invalid UTF-8 byte sequence sample' do
+        let(:sample) { FFmpeg.new('') }
 
         before do
-          subject.stubs(:ffmpeg_output).returns <<-EOF
+          sample.stubs(:ffmpeg_output).returns <<-EOF
             Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'foo.mov':
               Metadata:
                 major_brand     : qt  
@@ -177,23 +287,23 @@ module VideoDimensions::Backends
         end
 
         it 'returns the correct dimensions' do
-          expect(subject.dimensions).to eq [720, 480]
+          expect(sample.dimensions).to eq [720, 480]
         end
 
         it 'returns the correct bitrate' do
-          expect(subject.bitrate).to eq 3589
+          expect(sample.bitrate).to eq 3589
         end
 
         it 'returns the correct codec' do
-          expect(subject.codec).to eq 'h264'
+          expect(sample.codec).to eq 'h264'
         end
 
         it 'returns the correct duration' do
-          expect(subject.duration).to eq '00:10:21'
+          expect(sample.duration).to eq '00:10:21'
         end
 
         it 'returns the correct framerate' do
-          expect(subject.framerate).to eq 29.97
+          expect(sample.framerate).to eq 29.97
         end
       end
     end
