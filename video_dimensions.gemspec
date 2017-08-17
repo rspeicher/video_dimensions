@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.license       = "MIT"
   gem.authors       = ["Robert Speicher"]
   gem.email         = "rspeicher@gmail.com"
-  gem.homepage      = "https://github.com/tsigo/video_dimensions"
+  gem.homepage      = "https://github.com/rspeicher/video_dimensions"
 
   gem.files         = `git ls-files`.split($/)
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
